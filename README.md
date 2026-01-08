@@ -24,6 +24,7 @@ Each day’s work is documented below and corresponding source code is added in 
 #### 🔹 Programs Practiced
 - Even or Odd Using Bitwise Operation
 - Power of 2 Using Bitwise Operation
+- Swap 2 Num Using Bitwise Operation
 
 #### 🔹 Learning Outcome
 - Understood Bitwise Operation
