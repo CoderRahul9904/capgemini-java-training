@@ -33,10 +33,33 @@ Each day’s work is documented below and corresponding source code is added in 
 
 ---
 
-### ⏳ Day 2 – *(To be updated tomorrow)*
+### ⏳ Day 2 - Pattern and Array
+
+📅 **Date:** 9th January 2026
+
+#### 🔹 Topics Covered
+- Pattern Problem
+- Array Basic
+
+#### 🔹 Learning Outcomes
+- Array Initialization
+- Problem Solving
+
+
+📂 **Code Location:** `src/day2`
+---
+### ⏳ Day 3 - Advanced Leetcode Problem
+
+📅 **Date:** 9th January 2026
+
+#### 🔹 Topics Covered
+- Advanced Array
+
+#### 🔹 Programs Practiced
+- Solved Leetcode Problem
+
 
 ---
-
 ## 🛠️ Tools & Technologies
 - Java (JDK)
 - VS Code / IntelliJ IDEA
