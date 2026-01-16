@@ -47,6 +47,7 @@ Each day’s work is documented below and corresponding source code is added in 
 
 
 📂 **Code Location:** `src/day2`
+
 ---
 ### ⏳ Day 3 - Advanced Leetcode Problem
 
@@ -58,6 +59,7 @@ Each day’s work is documented below and corresponding source code is added in 
 #### 🔹 Programs Practiced
 - Solved Leetcode Problem
 
+---
 ### ⏳ Day 4 - Grocery ArrayList Implementation( Collection Framework )
 
 📅 **Date:** 14th January 2026
@@ -70,6 +72,7 @@ Each day’s work is documented below and corresponding source code is added in 
 
 📂 **Code Location:** `src/day4`
 
+---
 
 ### ⏳ Day 5 - HashMap
 
@@ -82,6 +85,22 @@ Each day’s work is documented below and corresponding source code is added in 
 - Solved Leetcode Problem
 
 📂 **Code Location:** `src/day5`
+
+---
+
+### ⏳ Day 6 - String, StringBuilder
+
+📅 **Date:** 16th January 2026
+
+#### 🔹 Topics Covered
+- Basic of String
+- StringBuilder
+
+#### 🔹 Programs Practiced
+- Solved Leetcode Problem
+
+📂 **Code Location:** `src/day6`
+
 ---
 ## 🛠️ Tools & Technologies
 - Java (JDK)
