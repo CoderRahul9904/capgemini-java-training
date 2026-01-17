@@ -102,6 +102,19 @@ Each day’s work is documented below and corresponding source code is added in 
 📂 **Code Location:** `src/day6`
 
 ---
+### ⏳ Day 7 - Concept of Oops
+
+📅 **Date:** 17th January 2026
+
+#### 🔹 Topics Covered
+- Oops
+
+#### 🔹 Programs Practiced
+- No problem only theory
+
+📂 **Code Location:** `src/day7`
+
+---
 ## 🛠️ Tools & Technologies
 - Java (JDK)
 - VS Code / IntelliJ IDEA

@@ -93,4 +93,5 @@ public class BankAccount {
     }
 }
 
-
+// static method can call/use ---> static variable, static method
+// non-static method can call/use ----> static and non-static methods and variable
