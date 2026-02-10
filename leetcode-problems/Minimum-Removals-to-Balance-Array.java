@@ -1,4 +1,6 @@
-1class Solution {
+import java.util.Arrays;
+
+class Solution {
 2    public int minRemoval(int[] nums, int k) {
 3        
 4        Arrays.sort(nums);
@@ -6,7 +8,7 @@
 6int start = 0;
 7int maxLen = 0;
 8
-9for (int end = 0; end < nums.length; end++) {
+9 for (int end = 0; end < nums.length; end++) {
 10    while ((long) nums[end] > (long) nums[start] * k) {
 11    start++;
 12}
