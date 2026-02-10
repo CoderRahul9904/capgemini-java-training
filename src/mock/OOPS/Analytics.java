@@ -92,5 +92,24 @@ public class Analytics implements IAnalytics {
         result.sort(Comparator.comparing(Enum::name));
 
         return result;
+
+//        int maxFreq=0;
+//        for(Map.Entry<ActionEnum, Integer> entry : frequentlyUsedActions.entrySet()) {
+//            if(entry.getValue() > maxFreq) maxFreq=entry.getValue();
+//        }
+//        List<ActionEnum> result = new ArrayList<>();
+//        for(Map.Entry<ActionEnum, Integer> entry : frequentlyUsedActions.entrySet()) {
+//            if(entry.getValue() == maxFreq) result.add(entry.getKey());
+//        }
+//        for(int i=0; i < result.size(); i++) {
+//            for(int j=1; j < result.size(); j++) {
+//                if(result.get(j).name().charAt(0) > (result.get(j-1).name().charAt(j))) {
+//                    ActionEnum temp = result.get(j);
+//                    result.set(j, result.get(j-1));  // This will work if first Character is different
+//                    result.set(j-1, temp);
+//                }
+//            }
+//        }
+//        return result;
     }
 }
