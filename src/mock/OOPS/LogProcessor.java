@@ -30,11 +30,11 @@ public class LogProcessor implements ILogProcessor {
         return Long.parseLong(dateAndTimeFormat);
     }
     List<LogEntry> entries;
-    HashMap<String,Integer> hmp;
+    PriorityQueue<Integer> pq;
     public LogProcessor(List<LogEntry> entries) {
         // init
         this.entries = entries;
-        this.hmp = new HashMap<>();
+        this.pq = new PriorityQueue<>(Comparator.reverseOrder());
     }
 
     @Override
@@ -47,12 +47,13 @@ public class LogProcessor implements ILogProcessor {
     public List<String> query(String dateFrom, String dateTo, String statusFilter, int M) {
         // TODO: implement
         List<String> mostFreqMessages=new ArrayList<>();
-        PriorityQueue<Integer> pq=new PriorityQueue<>(Comparator.reverseOrder());
+
 //        int maxFreqMessageCount=Collections.max(hmp.values());
         String morningDefault="00:00";
         String nightDefault="23:59";
         long rangeFrom=convertDate(dateFrom,morningDefault);
         long rangeTo=convertDate(dateTo,nightDefault);
+        HashMap<String,Integer> hmp=new HashMap<>();
         List<LogEntry> filteredEntries=entries.stream().filter(entry -> entry.status.equals(statusFilter)).filter(entry -> convertDate(entry.date,entry.time) >= rangeFrom && convertDate(entry.date,entry.time) <= rangeTo).toList();
         for(LogEntry entry:filteredEntries) {
             hmp.put(entry.message, hmp.getOrDefault(entry.message,0)+1);
@@ -65,6 +66,7 @@ public class LogProcessor implements ILogProcessor {
             for(Map.Entry<String,Integer> entry: hmp.entrySet()) {
                 if(hmp.get(entry.getKey()) == pq.poll()) {
                     mostFreqMessages.add(entry.getKey());
+                    break;
                 }
             }
         }
