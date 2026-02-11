@@ -1,6 +1,8 @@
 package mock.OOPS;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamAPIPrac {
 
@@ -151,7 +153,45 @@ public class StreamAPIPrac {
 
         // TODO: Solve Problem 3 using Streams
         System.out.println("================== Problem 3.1 ==================");
+        int newIdWithMaxCommentList=
+                newsList
+                .stream()
+                .collect(Collectors.groupingBy(n -> n.newsId, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
 
+        System.out.println("New Id with max comments is " + newIdWithMaxCommentList);
+
+        System.out.println("================== Problem 3.2 ==================");
+        long budgeWordCount=newsList
+                .stream()
+                .filter(n -> n.comment.contains("Budget"))
+                .count();
+        System.out.println("Budge word count is " + budgeWordCount);
+
+        System.out.println("================== Problem 3.3 ==================");
+        String user=newsList.stream()
+                .collect(Collectors.groupingBy(n -> n.commentByUser, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+
+        System.out.println("User with max Comment is " + user);
+
+        System.out.println("================== Problem 3.4 ==================");
+        Map<String, Long> userCommentCount =newsList.stream()
+                .collect(Collectors.groupingBy(n -> n.commentByUser, Collectors.counting()));
+
+
+
+        userCommentCount.forEach((users, count) ->
+                System.out.println(users + " -----------> " + count)
+        );
 
         // ================== Problem 4 ==================
         List<Trader> traders = List.of(
@@ -164,6 +204,23 @@ public class StreamAPIPrac {
         );
 
         // TODO: Solve Problem 4 using Streams
+        System.out.println("================== Problem 4.1 ==================");
+        System.out.println("All Unique Cities");
+        traders
+                .stream()
+                .map(n -> n.city)
+                .distinct()
+                .forEach(city -> System.out.println(city));
+
+        System.out.println("================== Problem 4.2 ==================");
+        traders.stream().filter(n -> n.city.equals("Pune")).sorted(Comparator.comparing(n -> n.name)).forEach(n -> System.out.println("Trader from Pune " + n.name));
+
+        System.out.println("================== Problem 4.3 ==================");
+        traders.stream().sorted((a,b) -> a.name.compareTo(b.name)).forEach(n -> System.out.println("Trader Name Sorted Form: " + n.name));
+
+
+        System.out.println("================== Problem 4.4 ==================");
+        traders.stream().filter(n -> n.city.equals("Indore")).forEach(n -> System.out.println("Trader from Indore " + n.name));
 
     }
 }
