@@ -24,8 +24,8 @@ public class LogProcessor implements ILogProcessor {
 
     // Add data structures here
     public long convertDate(String date, String time) {
-        String dateFormatArr[]=date.split("-");
-        String timeFormatArr[]=time.split(":");
+        String[] dateFormatArr =date.split("-");
+        String[] timeFormatArr =time.split(":");
         String dateAndTimeFormat=dateFormatArr[2]+dateFormatArr[1]+dateFormatArr[0]+timeFormatArr[0]+timeFormatArr[1];
         return Long.parseLong(dateAndTimeFormat);
     }
@@ -58,10 +58,7 @@ public class LogProcessor implements ILogProcessor {
         for(LogEntry entry:filteredEntries) {
             hmp.put(entry.message, hmp.getOrDefault(entry.message,0)+1);
         }
-        
-        for(int num: hmp.values()) {
-            pq.add(num);
-        }
+        pq.addAll(hmp.values());
         for(int i=1; i <= M; i++) {
             for(Map.Entry<String,Integer> entry: hmp.entrySet()) {
                 if(hmp.get(entry.getKey()) == pq.poll()) {
