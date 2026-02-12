@@ -17,12 +17,12 @@ Design and implement an `Analytics` system that collects application actions and
 * Use an enum `ActionEnum` to represent actions.
 * The `Analytics` class must:
 
-    * Buffer incoming actions in-order.
-    * Send buffered actions to the store when the buffer size reaches `K`.
-    * Provide a `flush()` method that immediately sends all buffered actions (even if less than `K`).
-    * Optionally flush automatically if the oldest action in the buffer is older than `T` seconds (simulate using timestamps provided with actions). The compiler test will call `registerAction(ActionEnum action, long timestampSeconds)` where `timestampSeconds` is increasing.
-    * Track total number of logged actions.
-    * Track frequency of actions (across all registered actions, whether sent or not) and return the most frequently used actions sorted by name.
+  * Buffer incoming actions in-order.
+  * Send buffered actions to the store when the buffer size reaches `K`.
+  * Provide a `flush()` method that immediately sends all buffered actions (even if less than `K`).
+  * Optionally flush automatically if the oldest action in the buffer is older than `T` seconds (simulate using timestamps provided with actions). The compiler test will call `registerAction(ActionEnum action, long timestampSeconds)` where `timestampSeconds` is increasing.
+  * Track total number of logged actions.
+  * Track frequency of actions (across all registered actions, whether sent or not) and return the most frequently used actions sorted by name.
 
 **Important behaviors**:
 
@@ -269,3 +269,174 @@ public class ValidWords {
 ---
 
 Good luck — paste the code you write and I’ll debug with targeted hints. Happy practicing!
+
+---
+
+## Problem D — Rate Limited Notification System (Analyst+ Level)
+
+**Estimated target time:** 40–50 minutes (practice: 60 minutes)
+
+### Problem statement
+
+Design and implement a **Rate Limited Notification System** that processes user notifications while preventing spam.
+
+Each notification request contains:
+
+```
+(userId, messageType, timestampSeconds)
+```
+
+The system must:
+
+1. Allow at most **N notifications per user per rolling window of W seconds**.
+2. If a user exceeds the limit, the notification must be rejected.
+3. Maintain statistics:
+
+  * Total notifications received
+  * Total notifications successfully sent
+  * Total notifications rejected
+4. Provide a method to return the **top K users by successful notification count** (sorted by count desc, then userId asc).
+
+Timestamps are strictly increasing across calls.
+
+---
+
+### Interfaces (do not modify)
+
+```java
+class Notification {
+    String userId;
+    String messageType;
+    long timestampSeconds;
+
+    public Notification(String userId, String messageType, long timestampSeconds) {
+        this.userId = userId;
+        this.messageType = messageType;
+        this.timestampSeconds = timestampSeconds;
+    }
+}
+
+interface INotificationSystem {
+    boolean send(Notification notification);
+    int getTotalReceived();
+    int getTotalSent();
+    int getTotalRejected();
+    List<String> getTopKActiveUsers(int K);
+}
+```
+
+---
+
+### Requirements
+
+* Implement `NotificationSystem` class.
+* Use efficient data structures (constraints go up to 10^5 notifications).
+* Sliding window logic must be per user.
+* Do NOT use external rate-limiter libraries.
+* `getTopKActiveUsers(K)` must return users sorted:
+
+  * Successful sends (desc)
+  * userId (asc if tie)
+
+---
+
+### Constraints
+
+* `1 <= total notifications <= 1e5`
+* `1 <= N <= 100`
+* `1 <= W <= 10^4`
+* `1 <= K <= number of unique users`
+
+---
+
+### Starter template (HackerRank style)
+
+```java
+import java.util.*;
+
+class Notification {
+    String userId;
+    String messageType;
+    long timestampSeconds;
+
+    public Notification(String userId, String messageType, long timestampSeconds) {
+        this.userId = userId;
+        this.messageType = messageType;
+        this.timestampSeconds = timestampSeconds;
+    }
+}
+
+interface INotificationSystem {
+    boolean send(Notification notification);
+    int getTotalReceived();
+    int getTotalSent();
+    int getTotalRejected();
+    List<String> getTopKActiveUsers(int K);
+}
+
+public class NotificationSystem implements INotificationSystem {
+
+    private final int maxPerWindow;
+    private final long windowSeconds;
+
+    // Add required data structures here
+
+    public NotificationSystem(int maxPerWindow, long windowSeconds) {
+        this.maxPerWindow = maxPerWindow;
+        this.windowSeconds = windowSeconds;
+    }
+
+    @Override
+    public boolean send(Notification notification) {
+        // TODO: implement rate limiting logic
+        return false;
+    }
+
+    @Override
+    public int getTotalReceived() {
+        // TODO
+        return 0;
+    }
+
+    @Override
+    public int getTotalSent() {
+        // TODO
+        return 0;
+    }
+
+    @Override
+    public int getTotalRejected() {
+        // TODO
+        return 0;
+    }
+
+    @Override
+    public List<String> getTopKActiveUsers(int K) {
+        // TODO
+        return new ArrayList<>();
+    }
+}
+```
+
+---
+
+### Why this matches M1 / Analyst Level
+
+* Tests OOPS design (per-user state management)
+* Requires sliding window logic (DSA inside OOPS)
+* Requires correct frequency tracking and sorting
+* Has edge cases around boundary timestamps
+* Time complexity matters (cannot do O(n^2))
+
+---
+
+💡 Suggested strategy:
+
+* Use a `Map<String, Queue<Long>>` to track per-user timestamps
+* Remove timestamps older than `(currentTime - windowSeconds)`
+* Maintain a separate success counter map for ranking
+* Use sorting or PriorityQueue for top-K users
+
+---
+
+You now have **4 solid Analyst-level problems** in this README. 🚀
