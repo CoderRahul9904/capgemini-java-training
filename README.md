@@ -115,6 +115,16 @@ Each day’s work is documented below and corresponding source code is added in 
 📂 **Code Location:** `src/day7`
 
 ---
+### ⏳ Day 45 - Java, Servlet 
+
+📅 **Date:** February 2026
+
+#### 🔹 Topics Covered
+- Servlet In Java
+
+#### 🔹 Simple Web Practiced
+- No problem only theory
+---
 ## 🛠️ Tools & Technologies
 - Java (JDK)
 - VS Code / IntelliJ IDEA
